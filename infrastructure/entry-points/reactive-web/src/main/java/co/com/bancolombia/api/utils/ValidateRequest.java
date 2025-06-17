@@ -1,7 +1,7 @@
 package co.com.bancolombia.api.utils;
 
 import co.com.bancolombia.api.scaffold.request.UserRequest;
-import co.com.bancolombia.exceptions.BussinesErrorMessage;
+import co.com.bancolombia.exceptions.BusinessErrorMessage;
 import co.com.bancolombia.exceptions.CustomerBusinessException;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class ValidateRequest {
         }
         FieldError fieldError = errors.getFieldError("userRequest");
         String code = (fieldError != null) ? fieldError.getCode() : "499";
-        var enumError = BussinesErrorMessage.getEnumStatusCode(code);
+        var enumError = BusinessErrorMessage.getEnumStatusCode(code);
         var backEnd = CustomerBusinessException.ResponseBackEnd.builder().build();
         return Mono.error(() -> new CustomerBusinessException(enumError, backEnd));
     }
