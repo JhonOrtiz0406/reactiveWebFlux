@@ -14,10 +14,8 @@ public class ResponseEntityBuilder {
 
     public Mono<ReactiveWebFluxResponse> buildResponse(Meta meta, UserResponse data) {
         var responseReactive = new ReactiveWebFluxResponse();
-        var dataReactive = new Data();
         responseReactive.setMeta(meta);
-        dataReactive.setResponse(data.getMessage());
-        responseReactive.setData(dataReactive);
+        responseReactive.setData(buildData(data));
         return Mono.just(responseReactive);
     }
 
@@ -31,8 +29,6 @@ public class ResponseEntityBuilder {
                         .errorMessage(businessException.description())
                         .build())
                 ).build();
-        System.out.println("errorResumen: " + errorResumen);
-        System.out.println("errorResumen First: " + errorResumen.getErrors().getFirst().getErrorMessage());
         return Mono.just(errorResumen);
     }
 
@@ -43,9 +39,9 @@ public class ResponseEntityBuilder {
                 .build();
     }
 
-    public Data buildData(Data data) {
+    public Data buildData(UserResponse userResponse) {
         return Data.builder()
-                .response(data.getResponse())
+                .response(userResponse.getMessage())
                 .build();
     }
 }

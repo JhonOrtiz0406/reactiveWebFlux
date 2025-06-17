@@ -1,9 +1,7 @@
 package co.com.bancolombia.usecase;
 
 
-import co.com.bancolombia.exceptions.BusinessErrorMessage;
 import co.com.bancolombia.exceptions.CustomerBusinessException;
-import co.com.bancolombia.gateway.UserGateway;
 import co.com.bancolombia.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;

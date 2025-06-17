@@ -11,7 +11,8 @@ public class CustomerBusinessException extends RuntimeException {
     private final BusinessErrorMessage businessErrorMessage;
     private final ResponseBackEnd responseBackEnd;
 
-    public CustomerBusinessException(BusinessErrorMessage businessErrorMessage, ResponseBackEnd responseBackEnd) {
+    public CustomerBusinessException(BusinessErrorMessage businessErrorMessage,
+                                     ResponseBackEnd responseBackEnd) {
         super(businessErrorMessage.getErrorMessage());
         this.businessErrorMessage = businessErrorMessage;
         this.responseBackEnd = responseBackEnd;

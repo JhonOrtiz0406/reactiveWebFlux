@@ -24,9 +24,9 @@ public class ValidateRequest {
             return Mono.just(userRequest);
         }
         FieldError fieldError = errors.getFieldError("userRequest");
-        String code = (fieldError != null) ? fieldError.getCode() : "499";
+        String code = (fieldError != null) ? fieldError.getCode() : "428";
         var enumError = BusinessErrorMessage.getEnumStatusCode(code);
-        var backEnd = CustomerBusinessException.ResponseBackEnd.builder().build();
-        return Mono.error(() -> new CustomerBusinessException(enumError, backEnd));
+        var responseBack = CustomerBusinessException.ResponseBackEnd.builder().errorMessage("Error al digitar la data request.").build();
+        return Mono.error(() -> new CustomerBusinessException(enumError, responseBack));
     }
 }
