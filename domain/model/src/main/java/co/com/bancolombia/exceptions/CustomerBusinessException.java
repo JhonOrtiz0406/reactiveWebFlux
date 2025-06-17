@@ -2,16 +2,18 @@ package co.com.bancolombia.exceptions;
 
 import lombok.*;
 
+import co.com.bancolombia.exceptions.BusinessErrorMessage;
+
 import java.io.Serializable;
 
 @Getter
 public class CustomerBusinessException extends RuntimeException {
-    private final BussinesErrorMessage bussinesErrorMessage;
+    private final BusinessErrorMessage businessErrorMessage;
     private final ResponseBackEnd responseBackEnd;
 
-    public CustomerBusinessException(BussinesErrorMessage bussinesErrorMessage, ResponseBackEnd responseBackEnd) {
-        super(bussinesErrorMessage.getErrorMessage());
-        this.bussinesErrorMessage = bussinesErrorMessage;
+    public CustomerBusinessException(BusinessErrorMessage businessErrorMessage, ResponseBackEnd responseBackEnd) {
+        super(businessErrorMessage.getErrorMessage());
+        this.businessErrorMessage = businessErrorMessage;
         this.responseBackEnd = responseBackEnd;
     }
 
