@@ -11,8 +11,8 @@ import java.util.Map;
 public enum BusinessErrorMessage {
 
     ERROR_BAD_REQUEST("400", "Error en la peticion", "BP400", "Sucedio un error inesperado en la peticion"),
-    ERROR_MAPPING_VALIDATE_REQUEST("499", "Error en la peticion", "BP499", "Sucedio un error inesperado en la peticion - 499")
-
+    ERROR_MAPPING_VALIDATE_REQUEST("428", "Precondition Required", "BP428", "Sucedio un error inesperado en la peticion - 499"),
+    ERROR_DEFAULT("404","Error de parametros", "BP404", "Sucedio un error inesperado"),
 
     ;
 
@@ -25,12 +25,22 @@ public enum BusinessErrorMessage {
     static {
         for (BusinessErrorMessage status : BusinessErrorMessage.values()) {
             mapEnum.put(status.status, status);
-            System.out.println("Echo - ErrorCode: " + status.status + " - Title - " + status.title);
         }
     }
 
     public static BusinessErrorMessage getEnumStatusCode(String status) {
         return mapEnum.get(status);
+    }
+
+    private static final Map<String, BusinessErrorMessage> mapByErrorCode = new HashMap<>();
+    static {
+        for (BusinessErrorMessage error : values()) {
+            mapByErrorCode.put(error.errorCode, error);
+        }
+    }
+
+    public static BusinessErrorMessage getEnumErrorCode(String code) {
+        return mapByErrorCode.get(code);
     }
 
 }
